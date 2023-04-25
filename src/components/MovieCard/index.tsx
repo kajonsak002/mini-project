@@ -1,6 +1,7 @@
 import React from "react";
 import { SearchMovieData } from "../../models/movie.model";
 import "./MovieCard.scss";
+import { Link } from "react-router-dom";
 
 type Props = {
   movie: SearchMovieData;
@@ -17,7 +18,7 @@ const MovieCard = ({ movie }: Props) => {
         <p> Year : {movie.Year} </p>
       </div>
       <div className="card-action">
-        <button onClick={() => console.log("on click")}>Read More</button>
+        <Link to={`movie/${movie.imdbID}`}>Read More</Link>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ const movieSlices = createSlice({
     initialState,
     reducers: {
         addMovie: (state , action) => {
-            state.movie = action.payload
+            state.movies = action.payload
 
             console.log(current(state));
             

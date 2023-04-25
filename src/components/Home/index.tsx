@@ -9,18 +9,19 @@ import { addMovie } from "../../store/slices/movieSlice";
 type Props = {};
 
 const Home = ({}: Props) => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const [search, setSearch] = useState<string>("");
 
   const fetchMovie = async () => {
     try {
-      const searchKey = search ? search : "batman";
+      const searchKey = search ? search : "spider";
       const { data: movies } = await MovieApi.get(
         `?apikey=${APIkey}&s=${searchKey}&type=movie`
       );
-      
+        console.log(movies);
+        
       setTimeout(() => {
-        dispatch(addMovie(movies.search))
+        dispatch(addMovie(movies.Search));
       }, 500);
     } catch (err) {
       console.log(err);
@@ -40,7 +41,7 @@ const Home = ({}: Props) => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <MovieList/>
+        <MovieList />
       </div>
     </>
   );
