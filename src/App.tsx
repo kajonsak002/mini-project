@@ -6,9 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
-
-
-// Components
+import Home from "./components/Home";
 
 
 function App() {
@@ -16,15 +14,16 @@ function App() {
     <>
       <BrowserRouter>
         <div className="header">
-          <Header/>
+          <Header />
         </div>
-        <div className="container"> 
-        <Routes>
-          <Route path="*" element={<NotFound/>}></Route>
-        </Routes>
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Home/>}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
         </div>
         <div className="footer">
-         <Footer/>
+          <Footer />
         </div>
       </BrowserRouter>
     </>
