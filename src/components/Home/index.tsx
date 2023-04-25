@@ -3,21 +3,25 @@ import MovieApi from "../../api/MovieApi";
 import { APIkey } from "../../api/MovieApiKey";
 import "./Home.scss";
 import MovieList from "../MovieList";
-import { Movie } from "../../models/movie.model";
+import { useAppDispatch } from "../../store/store";
+import { addMovie } from "../../store/slices/movieSlice";
 
 type Props = {};
 
 const Home = ({}: Props) => {
-  const [movie, setMovie] = useState<Movie>('');
+  const dispatch = useAppDispatch()
   const [search, setSearch] = useState<string>("");
 
   const fetchMovie = async () => {
     try {
-      const searchKey = search ? search : "spider";
+      const searchKey = search ? search : "batman";
       const { data: movies } = await MovieApi.get(
         `?apikey=${APIkey}&s=${searchKey}&type=movie`
       );
-      setMovie(movies);
+      
+      setTimeout(() => {
+        dispatch(addMovie(movies.search))
+      }, 500);
     } catch (err) {
       console.log(err);
     }
@@ -32,11 +36,11 @@ const Home = ({}: Props) => {
         <h3 style={{ margin: "1rem 0" }}>Movie</h3>
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <MovieList movies={movie} />
+        <MovieList/>
       </div>
     </>
   );
